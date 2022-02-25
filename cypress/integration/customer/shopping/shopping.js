@@ -1,5 +1,7 @@
 import { Given, Then, When, But } from 'cypress-cucumber-preprocessor/steps'
 
+const cartUrl = '/index.php?route=checkout/cart'
+
 Given('Client is on home page', () => {
     cy.intercept('GET', '/index.php?route=common/cart/info').as('addToCart')
     cy.visit('/')
@@ -8,6 +10,20 @@ Given('Client is on home page', () => {
 When('An item is added to cart', () => {
     cy.get('.product-layout').eq(0).find('i.fa-shopping-cart').parents('button').eq(0).click()
     cy.wait('@addToCart')
+})
+
+When('{string} are added to cart', items => {
+    items.split(',').forEach(item => {
+        item = item.trim()
+        cy.get('#search').find('input').click().clear().should('have.value', '')
+            .type(item, { delay: 100 }).should('have.value', item)
+            .type('{enter}')
+        cy.get(`a:contains(${item})`).parents('div.product-layout')
+            .find('i.fa-shopping-cart').parents('button').eq(0).click()
+        cy.wait('@addToCart')
+        cy.get('#cart').click().find('ul').should('contain', item)
+    })
+
 })
 
 Then('Client can proceed to checkout', () => {

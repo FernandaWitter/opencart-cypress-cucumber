@@ -7,7 +7,6 @@ Scenario: Client adds item to cart and proceeds to checkout
     Then Client can proceed to checkout
     But All items are out of stock
 
-@skip
 Scenario: Client adds multiple items to cart and proceeds to checkout
     Given Client is on home page
     When 'MacBook, iPhone, iPod Nano' are added to cart
