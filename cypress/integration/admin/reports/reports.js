@@ -6,14 +6,14 @@ const stats = ['Order Sales', 'Orders Processing', 'Orders Complete', 'Orders Ot
 
 When('Admin accesses {string} report', report => {
     cy.clickAdminMenuItem('#menu-report', 'Reports')
-    cy.url().should('contain', 'report')
+    cy.urlShouldContain('report')
     cy.get('select[name="report"]')
         .select(report + ' Report')
 })
 
 When('Admin accesses statistics page', () => {
     cy.clickAdminMenuItem('#menu-report', 'Statistics')
-    cy.url().should('contain', 'statistics')
+    cy.urlShouldContain('statistics')
 })
 
 And('Filters Reports for period {string} to {string}', (start, end) => {
