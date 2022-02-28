@@ -5,3 +5,7 @@ Given('Admin is logged in', () => {
     cy.logAsAdmin()
     cy.urlShouldContain('dashboard')
 })
+
+Given('Admin is on {string} page', urlSnippet => {
+    cy.urlShouldContain(urlSnippet)
+})
