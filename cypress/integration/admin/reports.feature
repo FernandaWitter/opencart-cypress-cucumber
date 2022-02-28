@@ -6,6 +6,7 @@ Scenario: Admin obtains Sales Report
     When Admin accesses 'Sales' report
     Then 'Sales' report is shown
 
+@skip
 Scenario: Admin obtains Tax Reports for the month of July
     Given Admin is logged in
     When Admin accesses 'Tax' report
@@ -13,6 +14,7 @@ Scenario: Admin obtains Tax Reports for the month of July
     Then 'Tax' report is shown
     And All Records are for month '07'
 
+@skip
 Scenario: Admin accesses shop statistics
     Given Admin is logged in
     When Admin accesses statistics page
