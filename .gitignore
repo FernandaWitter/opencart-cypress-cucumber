@@ -16,8 +16,8 @@ node_modules/
 .npm
 
 # dotenv environment variables file
-.env
-.env.json
+*.env
+*.env.json
 
 # Cypress debug media files
 cypress/videos
