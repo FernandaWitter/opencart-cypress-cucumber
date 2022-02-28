@@ -45,3 +45,7 @@ Cypress.Commands.add('logAsAdmin', () => {
         })
     cy.get('button').contains('Login').click()
 })
+
+Cypress.Commands.add('urlShouldContain', urlSnippet => {
+    cy.url().should('contain', urlSnippet, { matchCase: true })
+})
