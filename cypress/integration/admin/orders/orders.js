@@ -22,10 +22,36 @@ const customers = [{
     city: 'Nhi pata'
 }]
 
+const voucher = {
+    code: 'asd123',
+    fromName: 'Admin',
+    fromEmail: 'admin@youstore.com',
+    toName: 'Lucky User',
+    toEmail: 'lucky@user.com',
+    amount: '£20.00'
+}
+
 Given('Admin accesses {string} under {string} menu', (subitem, item) => {
     cy.get('#menu').contains(item).click().next('ul').find('a[href^="https"]')
-        .contains(subitem).click()
+        .contains(subitem).click({ force: true })
     cy.get('h1').contains(subitem).should('be.visible')
+})
+
+When('Admin tries to create new gift voucher', () => {
+    cy.get('[data-original-title="Add New"]').click()
+    cy.get('#input-code').clear().type(voucher.code)
+        .should('have.value', voucher.code)
+    cy.get('#input-from-name').clear().type(voucher.fromName)
+        .should('have.value', voucher.fromName)
+    cy.get('#input-from-email').clear().type(voucher.fromEmail)
+        .should('have.value', voucher.fromEmail)
+    cy.get('#input-to-name').clear().type(voucher.toName)
+        .should('have.value', voucher.toName)
+    cy.get('#input-to-email').clear().type(voucher.toEmail)
+        .should('have.value', voucher.toEmail)
+    cy.get('#input-amount').clear().type(voucher.amount)
+        .should('have.value', voucher.amount)
+    cy.get('[data-original-title="Save"]').click()
 })
 
 When('Admin applies filter for {string} with value {string}', (filter, val) => {
@@ -88,4 +114,9 @@ Then('Registration data for {string} is correct', customer => {
     cy.get('#input-address-11').should('have.value', c.address)
     cy.get('#input-city1').should('have.value', c.city)
 
+})
+
+Then('Permission error is show', () => {
+    let errorMsg = ' Warning: You do not have permission to modify vouchers!'
+    cy.get('.alert-danger.alert-dismissible').should('contain', errorMsg)
 })

@@ -25,11 +25,9 @@ Scenario: Admin validates registrarion data for client Giridev Rabha
     And Admin opens 'customer' details
     Then Registration data for 'Giridev Rabha' is correct
 
-@skip
 Scenario: Admin tries to emit new gift voucher
     Given Admin accesses 'Gift Vouchers' under 'Sales' menu
-    And Gift voucher form is complete
-    When Admin tries to save gift voucher
+    When Admin tries to create new gift voucher
     Then Permission error is show
 
 @skip    
