@@ -81,7 +81,7 @@ Then('All dashboard elements are shown', () => {
 
 Then('All listed items have {string} data as {string}', (col, data) => {
     cy.getColIndex(col).then(ind => {
-        cy.get('#form-order').find('tbody').find('tr').each(row => {
+        cy.get('form').find('tbody').find('tr').each(row => {
             cy.wrap(row).find('td').eq(ind).should('contain', data)
         })
     })

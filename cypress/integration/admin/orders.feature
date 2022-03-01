@@ -26,15 +26,14 @@ Scenario: Admin validates registrarion data for client Giridev Rabha
     Then Registration data for 'Giridev Rabha' is correct
 
 Scenario: Admin tries to emit new gift voucher
-    Given Admin accesses 'Gift Vouchers' under 'Sales' menu
-    When Admin tries to create new gift voucher
-    Then Permission error is show
+   Given Admin accesses 'Gift Vouchers' under 'Sales' menu
+   When Admin tries to create new gift voucher
+   Then Permission error is show
 
-@skip    
 Scenario: Admin obtains all return orders for product HP LP3065
     Given Admin accesses 'Returns' under 'Sales' menu
-    When Admin applies filter for 'product' with value 'HP LP3065'
-    Then All listed items have 'product' data as 'HP LP3065'
+    When Admin applies filter for 'Product' with value 'HP LP3065'
+    Then All listed items have 'Product' data as 'HP LP3065'
 
 @skip
 Scenario: Admin validates registered coupons
