@@ -49,3 +49,13 @@ Cypress.Commands.add('logAsAdmin', () => {
 Cypress.Commands.add('urlShouldContain', urlSnippet => {
     cy.url().should('contain', urlSnippet, { matchCase: true })
 })
+
+Cypress.Commands.add('getColIndex', title => {
+    cy.get('#form-order').find('table').find('thead').find('td').then(headers => {
+        for (let i = 0; i < headers.length; i++) {
+            if (~headers[i].innerHTML.indexOf(title)) {
+                return cy.wrap(i)
+            }
+        }
+    })
+})
