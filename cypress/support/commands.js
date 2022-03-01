@@ -51,7 +51,7 @@ Cypress.Commands.add('urlShouldContain', urlSnippet => {
 })
 
 Cypress.Commands.add('getColIndex', title => {
-    cy.get('#form-order').find('table').find('thead').find('td').then(headers => {
+    cy.get('form').find('table').find('thead').find('td').then(headers => {
         for (let i = 0; i < headers.length; i++) {
             if (~headers[i].innerHTML.indexOf(title)) {
                 return cy.wrap(i)
