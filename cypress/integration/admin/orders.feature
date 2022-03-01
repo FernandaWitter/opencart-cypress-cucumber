@@ -8,11 +8,10 @@ Scenario: Admin validates dashboard data
     Given Admin is on 'dashboard' page
     Then All dashboard elements are shown
 
-@skip
 Scenario: Admin obtains all orders placed on Feb 24th, 2022
     Given Admin accesses 'Orders' under 'Sales' menu
-    When Admin applies filter for 'date added' with value '2022-02-24'
-    Then All listed items have 'date added' data as '24/02/2022'
+    When Admin applies filter for 'Date Added' with value '2022-02-24'
+    Then All listed items have 'Date Added' data as '24/02/2022'
 
 @skip
 Scenario: Admin validates details for the last order placed by Giridev Rabha
