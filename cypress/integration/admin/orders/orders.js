@@ -13,6 +13,7 @@ const order = {
     ],
     total: '£79.20'
 }
+
 const customers = [{
     name: 'Giridev Rabha',
     group: 'Default',
@@ -30,6 +31,12 @@ const voucher = {
     toEmail: 'lucky@user.com',
     amount: '£20.00'
 }
+
+const coupons = [
+    { name: '-10% Discount', code: '2222', discount: '10.0000', start: '01/01/2014', end: '01/01/2020', status: 'Disabled' },
+    { name: '-10.00 Discount', code: '1111', discount: '10.0000', start: '01/01/2014', end: '01/01/2020', status: 'Disabled' },
+    { name: 'Free Shipping', code: '3333', discount: '0.0000', start: '01/01/2014', end: '01/02/2014', status: 'Disabled' }
+]
 
 Given('Admin accesses {string} under {string} menu', (subitem, item) => {
     cy.get('#menu').contains(item).click().next('ul').find('a[href^="https"]')
@@ -119,4 +126,15 @@ Then('Registration data for {string} is correct', customer => {
 Then('Permission error is show', () => {
     let errorMsg = ' Warning: You do not have permission to modify vouchers!'
     cy.get('.alert-danger.alert-dismissible').should('contain', errorMsg)
+})
+
+Then('Only expected coupons are listed', () => {
+    coupons.forEach(coupon => {
+        cy.get('form').find('tbody').find('tr').contains(coupon.name).parents('tr')
+            .should('contain', coupon.code)
+            .and('contain', coupon.discount)
+            .and('contain', coupon.start)
+            .and('contain', coupon.end)
+            .and('contain', coupon.status)
+    })
 })
