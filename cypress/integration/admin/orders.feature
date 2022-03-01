@@ -13,10 +13,9 @@ Scenario: Admin obtains all orders placed on Feb 24th, 2022
     When Admin applies filter for 'Date Added' with value '2022-02-24'
     Then All listed items have 'Date Added' data as '24/02/2022'
 
-@skip
 Scenario: Admin validates details for the last order placed by Giridev Rabha
     Given Admin accesses 'Orders' under 'Sales' menu
-    When Admin applies filter for 'customer' with value 'Giridev Rabha'
+    When Admin applies filter for 'Customer' with value 'Giridev Rabha'
     And Admin opens last order details
     Then Order data is correct
 
