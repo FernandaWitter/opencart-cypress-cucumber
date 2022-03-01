@@ -13,6 +13,14 @@ const order = {
     ],
     total: '£79.20'
 }
+const customers = [{
+    name: 'Giridev Rabha',
+    group: 'Default',
+    email: 'soul@you.com',
+    phone: '911',
+    address: 'Kya karega janke',
+    city: 'Nhi pata'
+}]
 
 Given('Admin accesses {string} under {string} menu', (subitem, item) => {
     cy.get('#menu').contains(item).click().next('ul').find('a[href^="https"]')
@@ -21,21 +29,21 @@ Given('Admin accesses {string} under {string} menu', (subitem, item) => {
 })
 
 When('Admin applies filter for {string} with value {string}', (filter, val) => {
-    cy.get('#filter-order').find('label').contains(filter, { matchCase: false })
+    cy.get('label').contains(filter, { matchCase: false })
         .invoke('attr', 'for').then(field => {
             cy.get('#' + field).click({ force: true }).clear().should('have.value', '')
                 .type(val, { delay: 100 }).should('contain.value', val)
         })
 
-    cy.get('#button-filter').click()
+    cy.get('#button-filter').click({ force: true })
 })
 
-And('Admin opens last order details', () => {
-    cy.get('#form-order').find('table').as('ordersTable')
+And('Admin opens {string} details', () => {
+    cy.get('form').find('table').as('ordersTable')
     cy.get('@ordersTable').find('thead').find('td').contains('Date Added')
         .click()
     cy.get('@ordersTable').find('tbody').find('tr').eq(-1)
-        .find('[data-original-title="View"]').click()
+        .find('[data-original-title="View"], [data-original-title="Edit"]').click()
 
 })
 
@@ -66,4 +74,18 @@ Then('Order data is correct', () => {
         .find('table').eq(-1).find('tr').eq(-1)
         .should('contain', 'Total')
         .and('contain', order.total)
+})
+
+Then('Registration data for {string} is correct', customer => {
+    let c = customers.filter(obj => { return obj.name == customer })[0]
+    cy.get('#input-firstname').should('have.value', c.name.split(" ")[0])
+    cy.get('#input-lastname').should('have.value', c.name.split(" ")[1])
+    cy.get('#input-customer-group').should('contain', c.group)
+    cy.get('#input-email').should('have.value', c.email)
+    cy.get('#input-telephone').should('have.value', c.phone)
+
+    cy.get('a[href="#tab-address1"]').click()
+    cy.get('#input-address-11').should('have.value', c.address)
+    cy.get('#input-city1').should('have.value', c.city)
+
 })

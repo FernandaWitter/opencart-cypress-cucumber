@@ -16,14 +16,13 @@ Scenario: Admin obtains all orders placed on Feb 24th, 2022
 Scenario: Admin validates details for the last order placed by Giridev Rabha
     Given Admin accesses 'Orders' under 'Sales' menu
     When Admin applies filter for 'Customer' with value 'Giridev Rabha'
-    And Admin opens last order details
+    And Admin opens 'last order' details
     Then Order data is correct
 
-@skip
 Scenario: Admin validates registrarion data for client Giridev Rabha
     Given Admin accesses 'Customers' under 'Customers' menu
-    When Admin applies filter for 'customer name' with value 'Giridev Rabha'
-    And Admin opens customer details
+    When Admin applies filter for 'Customer Name' with value 'Giridev Rabha'
+    And Admin opens 'customer' details
     Then Registration data for 'Giridev Rabha' is correct
 
 @skip
