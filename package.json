@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "npm install cypress",
+        "build": "npm install cypress && npm i cypress-cucumber-preprocessor",
         "start": "npx cypress run"
     },
     "keywords": [],
@@ -12,8 +12,5 @@
     "license": "ISC",
     "cypress-cucumber-preprocessor": {
         "nonGlobalStepDefinitions": true
-    },
-    "dependencies": {
-        "cypress-cucumber-preprocessor": "^4.3.1"
     }
 }
