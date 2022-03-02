@@ -1,4 +1,5 @@
 {
     "baseUrl": "https://demo.opencart.com/",
-    "testFiles": "**/*.feature"
+    "testFiles": "**/*.feature",
+    "video": false
 }
