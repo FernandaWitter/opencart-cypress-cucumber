@@ -12,5 +12,8 @@
     "license": "ISC",
     "cypress-cucumber-preprocessor": {
         "nonGlobalStepDefinitions": true
+    },
+    "dependencies": {
+        "cypress-cucumber-preprocessor": "^4.3.1"
     }
 }
