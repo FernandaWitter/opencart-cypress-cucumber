@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "build": "npm install cypress",
-        "start": "cypress run"
+        "start": "npx cypress run"
     },
     "keywords": [],
     "author": "",
