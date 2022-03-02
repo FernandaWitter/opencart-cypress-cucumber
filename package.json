@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "npm start",
+        "build": "npm install cypress",
         "start": "cypress run"
     },
     "keywords": [],
