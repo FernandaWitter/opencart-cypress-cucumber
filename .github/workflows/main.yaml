@@ -15,4 +15,4 @@ jobs:
         with:
           build: npm run-script build
           start: npm start
-          browser: firefox
+          browser: electronS
