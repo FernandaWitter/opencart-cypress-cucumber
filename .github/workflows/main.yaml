@@ -17,5 +17,5 @@ jobs:
           start: npm start
           browser: electron
         env:
-          user: ${{secrets.USERNAME}}
-          password: ${{secrets.PW}}
+          CYPRESS_user: ${{secrets.USERNAME}}
+          CYPRESS_password: ${{secrets.PW}}
