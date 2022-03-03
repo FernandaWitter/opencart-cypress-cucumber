@@ -16,3 +16,6 @@ jobs:
           build: npm run-script build
           start: npm start
           browser: electron
+        env:
+          user: ${{secrets.USERNAME}}
+          password: ${{secrets.PW}}
